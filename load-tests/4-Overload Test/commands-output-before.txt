@@ -1,0 +1,460 @@
+PS D:\smpp-observability-platform> curl.exe -s http://localhost:8080/admin/messages/stats
+{"received":0,"queued":0,"processed":31201,"failed":0,"total":31201,"generatedAt":"2026-05-14T12:36:25.035265056Z"}
+PS D:\smpp-observability-platform> curl.exe -s http://localhost:8080/admin/throughput
+{"windowSeconds":60,"since":"2026-05-14T12:35:30.595579262Z","generatedAt":"2026-05-14T12:36:30.595579262Z","processedCount":0,"messagesPerSecond":0.0}
+PS D:\smpp-observability-platform> curl.exe -s http://localhost:8080/actuator/prometheus
+# HELP application_ready_time_seconds Time taken for the application to be ready to service requests
+# TYPE application_ready_time_seconds gauge
+application_ready_time_seconds{main_application_class="com.example.smpp.SmppObservabilityPlatformApplication"} 5.429
+# HELP application_started_time_seconds Time taken to start the application
+# TYPE application_started_time_seconds gauge
+application_started_time_seconds{main_application_class="com.example.smpp.SmppObservabilityPlatformApplication"} 5.373
+# HELP db_persist_active_seconds  
+# TYPE db_persist_active_seconds summary
+db_persist_active_seconds_count{message_status="RECEIVED"} 0
+db_persist_active_seconds_sum{message_status="RECEIVED"} 0.0
+# HELP db_persist_active_seconds_max  
+# TYPE db_persist_active_seconds_max gauge
+db_persist_active_seconds_max{message_status="RECEIVED"} 0.0
+# HELP db_persist_seconds  
+# TYPE db_persist_seconds summary
+db_persist_seconds_count{error="none",message_status="RECEIVED"} 31201
+db_persist_seconds_sum{error="none",message_status="RECEIVED"} 17.872025906
+# HELP db_persist_seconds_max
+# TYPE db_persist_seconds_max gauge
+db_persist_seconds_max{error="none",message_status="RECEIVED"} 0.0
+# HELP disk_free_bytes Usable space for path
+# TYPE disk_free_bytes gauge
+disk_free_bytes{path="/app/."} 1.016431628288E12
+# HELP disk_total_bytes Total space for path
+# TYPE disk_total_bytes gauge
+disk_total_bytes{path="/app/."} 1.081101176832E12
+# HELP executor_active_threads The approximate number of threads that are actively executing tasks
+# TYPE executor_active_threads gauge
+executor_active_threads{name="applicationTaskExecutor"} 0.0
+executor_active_threads{name="taskScheduler"} 0.0
+# HELP executor_completed_tasks_total The approximate total number of tasks that have completed execution
+# TYPE executor_completed_tasks_total counter
+executor_completed_tasks_total{name="applicationTaskExecutor"} 0.0
+executor_completed_tasks_total{name="taskScheduler"} 14021.0
+# HELP executor_pool_core_threads The core number of threads for the pool
+# TYPE executor_pool_core_threads gauge
+executor_pool_core_threads{name="applicationTaskExecutor"} 8.0
+executor_pool_core_threads{name="taskScheduler"} 1.0
+# HELP executor_pool_max_threads The maximum allowed number of threads in the pool
+# TYPE executor_pool_max_threads gauge
+executor_pool_max_threads{name="applicationTaskExecutor"} 2.147483647E9
+executor_pool_max_threads{name="taskScheduler"} 2.147483647E9
+# HELP executor_pool_size_threads The current number of threads in the pool
+# TYPE executor_pool_size_threads gauge
+executor_pool_size_threads{name="applicationTaskExecutor"} 0.0
+executor_pool_size_threads{name="taskScheduler"} 1.0
+# HELP executor_queue_remaining_tasks The number of additional elements that this queue can ideally accept without blocking
+# TYPE executor_queue_remaining_tasks gauge
+executor_queue_remaining_tasks{name="applicationTaskExecutor"} 2.147483647E9
+executor_queue_remaining_tasks{name="taskScheduler"} 2.147483647E9
+# HELP executor_queued_tasks The approximate number of tasks that are queued for execution
+# TYPE executor_queued_tasks gauge
+executor_queued_tasks{name="applicationTaskExecutor"} 0.0
+executor_queued_tasks{name="taskScheduler"} 1.0
+# HELP hikaricp_connections Total connections
+# TYPE hikaricp_connections gauge
+hikaricp_connections{pool="HikariPool-1"} 10.0
+# HELP hikaricp_connections_acquire_seconds Connection acquire time
+# TYPE hikaricp_connections_acquire_seconds summary
+hikaricp_connections_acquire_seconds_count{pool="HikariPool-1"} 147982
+hikaricp_connections_acquire_seconds_sum{pool="HikariPool-1"} 3.939851449
+# HELP hikaricp_connections_acquire_seconds_max Connection acquire time
+# TYPE hikaricp_connections_acquire_seconds_max gauge
+hikaricp_connections_acquire_seconds_max{pool="HikariPool-1"} 7.5951E-4
+# HELP hikaricp_connections_active Active connections
+# TYPE hikaricp_connections_active gauge
+hikaricp_connections_active{pool="HikariPool-1"} 0.0
+# HELP hikaricp_connections_creation_seconds Connection creation time
+# TYPE hikaricp_connections_creation_seconds summary
+hikaricp_connections_creation_seconds_count{pool="HikariPool-1"} 40
+hikaricp_connections_creation_seconds_sum{pool="HikariPool-1"} 0.547
+# HELP hikaricp_connections_creation_seconds_max Connection creation time
+# TYPE hikaricp_connections_creation_seconds_max gauge
+hikaricp_connections_creation_seconds_max{pool="HikariPool-1"} 0.0
+# HELP hikaricp_connections_idle Idle connections
+# TYPE hikaricp_connections_idle gauge
+hikaricp_connections_idle{pool="HikariPool-1"} 10.0
+# HELP hikaricp_connections_max Max connections
+# TYPE hikaricp_connections_max gauge
+hikaricp_connections_max{pool="HikariPool-1"} 10.0
+# HELP hikaricp_connections_min Min connections
+# TYPE hikaricp_connections_min gauge
+hikaricp_connections_min{pool="HikariPool-1"} 10.0
+# HELP hikaricp_connections_pending Pending threads
+# TYPE hikaricp_connections_pending gauge
+hikaricp_connections_pending{pool="HikariPool-1"} 0.0
+# HELP hikaricp_connections_timeout_total Connection timeout total count
+# TYPE hikaricp_connections_timeout_total counter
+hikaricp_connections_timeout_total{pool="HikariPool-1"} 0.0
+# HELP hikaricp_connections_usage_seconds Connection usage time
+# TYPE hikaricp_connections_usage_seconds summary
+hikaricp_connections_usage_seconds_count{pool="HikariPool-1"} 147982
+hikaricp_connections_usage_seconds_sum{pool="HikariPool-1"} 114.007
+# HELP hikaricp_connections_usage_seconds_max Connection usage time
+# TYPE hikaricp_connections_usage_seconds_max gauge
+hikaricp_connections_usage_seconds_max{pool="HikariPool-1"} 0.013
+# HELP http_server_requests_active_seconds
+# TYPE http_server_requests_active_seconds summary
+http_server_requests_active_seconds_count{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 1
+http_server_requests_active_seconds_sum{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 0.004966813
+# HELP http_server_requests_active_seconds_max
+# TYPE http_server_requests_active_seconds_max gauge
+http_server_requests_active_seconds_max{exception="none",method="GET",outcome="SUCCESS",status="200",uri="UNKNOWN"} 0.004967361
+# HELP http_server_requests_seconds
+# TYPE http_server_requests_seconds summary
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="CLIENT_ERROR",status="404",uri="/**"} 43
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="CLIENT_ERROR",status="404",uri="/**"} 0.083964149
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/actuator/health"} 1656
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/actuator/health"} 3.241491604
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/actuator/prometheus"} 2133
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/actuator/prometheus"} 13.423976431       
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/messages/failed"} 1655
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/messages/failed"} 3.190980229      
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/messages/stats"} 1698
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/messages/stats"} 4.585956911       
+http_server_requests_seconds_count{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/throughput"} 1665
+http_server_requests_seconds_sum{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/throughput"} 3.164039602
+# HELP http_server_requests_seconds_max
+# TYPE http_server_requests_seconds_max gauge
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="CLIENT_ERROR",status="404",uri="/**"} 0.0
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/actuator/health"} 0.002980354
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/actuator/prometheus"} 0.010800603        
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/messages/failed"} 0.002849594      
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/messages/stats"} 0.013877194       
+http_server_requests_seconds_max{error="none",exception="none",method="GET",outcome="SUCCESS",status="200",uri="/admin/throughput"} 0.002801602
+# HELP input_validation_active_seconds
+# TYPE input_validation_active_seconds summary
+input_validation_active_seconds_count{smpp_system_id="loadtest"} 0
+input_validation_active_seconds_sum{smpp_system_id="loadtest"} 0.0
+# HELP input_validation_active_seconds_max
+# TYPE input_validation_active_seconds_max gauge
+input_validation_active_seconds_max{smpp_system_id="loadtest"} 0.0
+# HELP input_validation_seconds
+# TYPE input_validation_seconds summary
+input_validation_seconds_count{error="none",smpp_system_id="loadtest"} 31201
+input_validation_seconds_sum{error="none",smpp_system_id="loadtest"} 0.156164788
+# HELP input_validation_seconds_max
+# TYPE input_validation_seconds_max gauge
+input_validation_seconds_max{error="none",smpp_system_id="loadtest"} 0.0
+# HELP jdbc_connections_active Current number of active connections that have been allocated from the data source.
+# TYPE jdbc_connections_active gauge
+jdbc_connections_active{name="dataSource"} 0.0
+# HELP jdbc_connections_idle Number of established but idle connections.
+# TYPE jdbc_connections_idle gauge
+jdbc_connections_idle{name="dataSource"} 10.0
+# HELP jdbc_connections_max Maximum number of active connections that can be allocated at the same time.
+# TYPE jdbc_connections_max gauge
+jdbc_connections_max{name="dataSource"} 10.0
+# HELP jdbc_connections_min Minimum number of idle connections in the pool.
+# TYPE jdbc_connections_min gauge
+jdbc_connections_min{name="dataSource"} 10.0
+# HELP jvm_info JVM version info
+# TYPE jvm_info gauge
+jvm_info{runtime="OpenJDK Runtime Environment",vendor="Eclipse Adoptium",version="21.0.11+10-LTS"} 1
+# HELP jvm_buffer_count_buffers An estimate of the number of buffers in the pool
+# TYPE jvm_buffer_count_buffers gauge
+jvm_buffer_count_buffers{id="direct"} 281.0
+jvm_buffer_count_buffers{id="mapped"} 0.0
+jvm_buffer_count_buffers{id="mapped - 'non-volatile memory'"} 0.0
+# HELP jvm_buffer_memory_used_bytes An estimate of the memory that the Java virtual machine is using for this buffer pool
+# TYPE jvm_buffer_memory_used_bytes gauge
+jvm_buffer_memory_used_bytes{id="direct"} 1.6948232E7
+jvm_buffer_memory_used_bytes{id="mapped"} 0.0
+jvm_buffer_memory_used_bytes{id="mapped - 'non-volatile memory'"} 0.0
+# HELP jvm_buffer_total_capacity_bytes An estimate of the total capacity of the buffers in this pool
+# TYPE jvm_buffer_total_capacity_bytes gauge
+jvm_buffer_total_capacity_bytes{id="direct"} 1.6948232E7
+jvm_buffer_total_capacity_bytes{id="mapped"} 0.0
+jvm_buffer_total_capacity_bytes{id="mapped - 'non-volatile memory'"} 0.0
+# HELP jvm_classes_loaded_classes The number of classes that are currently loaded in the Java virtual machine
+# TYPE jvm_classes_loaded_classes gauge
+jvm_classes_loaded_classes 20642.0
+# HELP jvm_classes_unloaded_classes_total The number of classes unloaded in the Java virtual machine
+# TYPE jvm_classes_unloaded_classes_total counter
+jvm_classes_unloaded_classes_total 391.0
+# HELP jvm_compilation_time_ms_total The approximate accumulated elapsed time spent in compilation
+# TYPE jvm_compilation_time_ms_total counter
+jvm_compilation_time_ms_total{compiler="HotSpot 64-Bit Tiered Compilers"} 65065.0
+# HELP jvm_gc_concurrent_phase_time_seconds Time spent in concurrent phase
+# TYPE jvm_gc_concurrent_phase_time_seconds summary
+jvm_gc_concurrent_phase_time_seconds_count{action="end of concurrent GC pause",cause="No GC",gc="G1 Concurrent GC"} 90
+jvm_gc_concurrent_phase_time_seconds_sum{action="end of concurrent GC pause",cause="No GC",gc="G1 Concurrent GC"} 0.475
+# HELP jvm_gc_concurrent_phase_time_seconds_max Time spent in concurrent phase
+# TYPE jvm_gc_concurrent_phase_time_seconds_max gauge
+jvm_gc_concurrent_phase_time_seconds_max{action="end of concurrent GC pause",cause="No GC",gc="G1 Concurrent GC"} 0.01
+# HELP jvm_gc_live_data_size_bytes Size of long-lived heap memory pool after reclamation
+# TYPE jvm_gc_live_data_size_bytes gauge
+jvm_gc_live_data_size_bytes 3.8054448E7
+# HELP jvm_gc_max_data_size_bytes Max size of long-lived heap memory pool
+# TYPE jvm_gc_max_data_size_bytes gauge
+jvm_gc_max_data_size_bytes 2.046820352E9
+# HELP jvm_gc_memory_allocated_bytes_total Incremented for an increase in the size of the (young) heap memory pool after one GC to before the next        
+# TYPE jvm_gc_memory_allocated_bytes_total counter
+jvm_gc_memory_allocated_bytes_total 1.1446255576E10
+# HELP jvm_gc_memory_promoted_bytes_total Count of positive increases in the size of the old generation memory pool before GC to after GC
+# TYPE jvm_gc_memory_promoted_bytes_total counter
+jvm_gc_memory_promoted_bytes_total 1.6692496E7
+# HELP jvm_gc_overhead An approximation of the percent of CPU time used by GC activities over the last lookback period or since monitoring began, whichever is shorter, in the range [0..1]
+# TYPE jvm_gc_overhead gauge
+jvm_gc_overhead 2.3333333333333332E-5
+# HELP jvm_gc_pause_seconds Time spent in GC pause
+# TYPE jvm_gc_pause_seconds summary
+jvm_gc_pause_seconds_count{action="end of minor GC",cause="G1 Evacuation Pause",gc="G1 Young Generation"} 133
+jvm_gc_pause_seconds_sum{action="end of minor GC",cause="G1 Evacuation Pause",gc="G1 Young Generation"} 0.966
+jvm_gc_pause_seconds_count{action="end of minor GC",cause="Metadata GC Threshold",gc="G1 Young Generation"} 1
+jvm_gc_pause_seconds_sum{action="end of minor GC",cause="Metadata GC Threshold",gc="G1 Young Generation"} 0.011
+# HELP jvm_gc_pause_seconds_max Time spent in GC pause
+# TYPE jvm_gc_pause_seconds_max gauge
+jvm_gc_pause_seconds_max{action="end of minor GC",cause="G1 Evacuation Pause",gc="G1 Young Generation"} 0.0
+jvm_gc_pause_seconds_max{action="end of minor GC",cause="Metadata GC Threshold",gc="G1 Young Generation"} 0.0
+# HELP jvm_memory_committed_bytes The amount of memory in bytes that is committed for the Java virtual machine to use
+# TYPE jvm_memory_committed_bytes gauge
+jvm_memory_committed_bytes{area="heap",id="G1 Eden Space"} 8.2837504E7
+jvm_memory_committed_bytes{area="heap",id="G1 Old Gen"} 4.9283072E7
+jvm_memory_committed_bytes{area="heap",id="G1 Survivor Space"} 1048576.0
+jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 4784128.0
+jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 1.7629184E7
+jvm_memory_committed_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 3.2309248E7
+jvm_memory_committed_bytes{area="nonheap",id="Compressed Class Space"} 1.5007744E7
+jvm_memory_committed_bytes{area="nonheap",id="Metaspace"} 1.12787456E8
+# HELP jvm_memory_max_bytes The maximum amount of memory in bytes that can be used for memory management
+# TYPE jvm_memory_max_bytes gauge
+jvm_memory_max_bytes{area="heap",id="G1 Eden Space"} -1.0
+jvm_memory_max_bytes{area="heap",id="G1 Old Gen"} 2.046820352E9
+jvm_memory_max_bytes{area="heap",id="G1 Survivor Space"} -1.0
+jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 8196096.0
+jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 1.2173312E8
+jvm_memory_max_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 1.21729024E8
+jvm_memory_max_bytes{area="nonheap",id="Compressed Class Space"} 1.073741824E9
+jvm_memory_max_bytes{area="nonheap",id="Metaspace"} -1.0
+# HELP jvm_memory_usage_after_gc The percentage of long-lived heap pool used after the last GC event, in the range [0..1]
+# TYPE jvm_memory_usage_after_gc gauge
+jvm_memory_usage_after_gc{area="heap",pool="long-lived"} 0.018595007599377242
+# HELP jvm_memory_used_bytes The amount of used memory
+# TYPE jvm_memory_used_bytes gauge
+jvm_memory_used_bytes{area="heap",id="G1 Eden Space"} 5.767168E7
+jvm_memory_used_bytes{area="heap",id="G1 Old Gen"} 3.806064E7
+jvm_memory_used_bytes{area="heap",id="G1 Survivor Space"} 731104.0
+jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'non-nmethods'"} 1874560.0
+jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'non-profiled nmethods'"} 1.630976E7
+jvm_memory_used_bytes{area="nonheap",id="CodeHeap 'profiled nmethods'"} 5657856.0
+jvm_memory_used_bytes{area="nonheap",id="Compressed Class Space"} 1.4289144E7
+jvm_memory_used_bytes{area="nonheap",id="Metaspace"} 1.11196984E8
+# HELP jvm_threads_daemon_threads The current number of live daemon threads
+# TYPE jvm_threads_daemon_threads gauge
+jvm_threads_daemon_threads 284.0
+# HELP jvm_threads_live_threads The current number of live threads including both daemon and non-daemon threads
+# TYPE jvm_threads_live_threads gauge
+jvm_threads_live_threads 325.0
+# HELP jvm_threads_peak_threads The peak live thread count since the Java virtual machine started or peak was reset
+# TYPE jvm_threads_peak_threads gauge
+jvm_threads_peak_threads 327.0
+# HELP jvm_threads_started_threads_total The total number of application threads started in the JVM
+# TYPE jvm_threads_started_threads_total counter
+jvm_threads_started_threads_total 402.0
+# HELP jvm_threads_states_threads The current number of threads
+# TYPE jvm_threads_states_threads gauge
+jvm_threads_states_threads{state="blocked"} 0.0
+jvm_threads_states_threads{state="new"} 0.0
+jvm_threads_states_threads{state="runnable"} 265.0
+jvm_threads_states_threads{state="terminated"} 0.0
+jvm_threads_states_threads{state="timed-waiting"} 15.0
+jvm_threads_states_threads{state="waiting"} 45.0
+# HELP logback_events_total Number of log events that were enabled by the effective log level
+# TYPE logback_events_total counter
+logback_events_total{level="debug"} 0.0
+logback_events_total{level="error"} 0.0
+logback_events_total{level="info"} 62437.0
+logback_events_total{level="trace"} 0.0
+logback_events_total{level="warn"} 2.0
+# HELP pdu_receive_active_seconds
+# TYPE pdu_receive_active_seconds summary
+pdu_receive_active_seconds_count{smpp_command="submit_sm",smpp_system_id="loadtest"} 0
+pdu_receive_active_seconds_sum{smpp_command="submit_sm",smpp_system_id="loadtest"} 0.0
+# HELP pdu_receive_active_seconds_max
+# TYPE pdu_receive_active_seconds_max gauge
+pdu_receive_active_seconds_max{smpp_command="submit_sm",smpp_system_id="loadtest"} 0.0
+# HELP pdu_receive_seconds
+# TYPE pdu_receive_seconds summary
+pdu_receive_seconds_count{error="none",smpp_command="submit_sm",smpp_system_id="loadtest"} 31201
+pdu_receive_seconds_sum{error="none",smpp_command="submit_sm",smpp_system_id="loadtest"} 0.501565156
+# HELP pdu_receive_seconds_max
+# TYPE pdu_receive_seconds_max gauge
+pdu_receive_seconds_max{error="none",smpp_command="submit_sm",smpp_system_id="loadtest"} 0.0
+# HELP process_cpu_time_ns_total The "cpu time" used by the Java Virtual Machine process
+# TYPE process_cpu_time_ns_total counter
+process_cpu_time_ns_total 3.5668E11
+# HELP process_cpu_usage The "recent cpu usage" for the Java Virtual Machine process
+# TYPE process_cpu_usage gauge
+process_cpu_usage 0.0022522522522522522
+# HELP process_files_max_files The maximum file descriptor count
+# TYPE process_files_max_files gauge
+process_files_max_files 1048576.0
+# HELP process_files_open_files The open file descriptor count
+# TYPE process_files_open_files gauge
+process_files_open_files 541.0
+# HELP process_start_time_seconds Start time of the process since unix epoch.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.77875444402E9
+# HELP process_uptime_seconds The uptime of the Java virtual machine
+# TYPE process_uptime_seconds gauge
+process_uptime_seconds 7087.747
+# HELP rabbitmq_acknowledged_total
+# TYPE rabbitmq_acknowledged_total counter
+rabbitmq_acknowledged_total{name="rabbit"} 31201.0
+# HELP rabbitmq_acknowledged_published_total
+# TYPE rabbitmq_acknowledged_published_total counter
+rabbitmq_acknowledged_published_total{name="rabbit"} 0.0
+# HELP rabbitmq_channels
+# TYPE rabbitmq_channels gauge
+rabbitmq_channels{name="rabbit"} 3.0
+# HELP rabbitmq_connections
+# TYPE rabbitmq_connections gauge
+rabbitmq_connections{name="rabbit"} 1.0
+# HELP rabbitmq_consumed_total
+# TYPE rabbitmq_consumed_total counter
+rabbitmq_consumed_total{name="rabbit"} 31201.0
+# HELP rabbitmq_failed_to_publish_total
+# TYPE rabbitmq_failed_to_publish_total counter
+rabbitmq_failed_to_publish_total{name="rabbit"} 0.0
+# HELP rabbitmq_not_acknowledged_published_total
+# TYPE rabbitmq_not_acknowledged_published_total counter
+rabbitmq_not_acknowledged_published_total{name="rabbit"} 0.0
+# HELP rabbitmq_published_total
+# TYPE rabbitmq_published_total counter
+rabbitmq_published_total{name="rabbit"} 31201.0
+# HELP rabbitmq_rejected_total
+# TYPE rabbitmq_rejected_total counter
+rabbitmq_rejected_total{name="rabbit"} 0.0
+# HELP rabbitmq_requeued_total
+# TYPE rabbitmq_requeued_total counter
+rabbitmq_requeued_total{name="rabbit"} 0.0
+# HELP rabbitmq_unrouted_published_total
+# TYPE rabbitmq_unrouted_published_total counter
+rabbitmq_unrouted_published_total{name="rabbit"} 0.0
+# HELP smpp_messages_processed_total
+# TYPE smpp_messages_processed_total counter
+smpp_messages_processed_total{status="PROCESSED"} 31201.0
+# HELP smpp_messages_received_total
+# TYPE smpp_messages_received_total counter
+smpp_messages_received_total{system_id="loadtest"} 31201.0
+# HELP smpp_processing_latency_seconds Wall time for async worker handling of one queued message id
+# TYPE smpp_processing_latency_seconds summary
+smpp_processing_latency_seconds_count{path="async"} 31201
+smpp_processing_latency_seconds_sum{path="async"} 114.462273197
+smpp_processing_latency_seconds_count{path="sync"} 31201
+smpp_processing_latency_seconds_sum{path="sync"} 18.976323117
+# HELP smpp_processing_latency_seconds_max Wall time for async worker handling of one queued message id
+# TYPE smpp_processing_latency_seconds_max gauge
+smpp_processing_latency_seconds_max{path="async"} 0.0
+smpp_processing_latency_seconds_max{path="sync"} 0.0
+# HELP smpp_sessions_active Inbound SMPP sessions currently bound
+# TYPE smpp_sessions_active gauge
+smpp_sessions_active 0.0
+# HELP spring_data_repository_invocations_seconds Duration of repository invocations
+# TYPE spring_data_repository_invocations_seconds summary
+spring_data_repository_invocations_seconds_count{exception="None",method="countGroupedByStatus",repository="MessageRepository",state="SUCCESS"} 1698      
+spring_data_repository_invocations_seconds_sum{exception="None",method="countGroupedByStatus",repository="MessageRepository",state="SUCCESS"} 3.360151705 
+spring_data_repository_invocations_seconds_count{exception="None",method="countProcessedSince",repository="MessageRepository",state="SUCCESS"} 1665       
+spring_data_repository_invocations_seconds_sum{exception="None",method="countProcessedSince",repository="MessageRepository",state="SUCCESS"} 2.138854544  
+spring_data_repository_invocations_seconds_count{exception="None",method="findAllByStatusOrderByReceivedAtAsc",repository="MessageRepository",state="SUCCESS"} 14021
+spring_data_repository_invocations_seconds_sum{exception="None",method="findAllByStatusOrderByReceivedAtAsc",repository="MessageRepository",state="SUCCESS"} 23.656795498
+spring_data_repository_invocations_seconds_count{exception="None",method="findAllByStatusOrderByUpdatedAtDesc",repository="MessageRepository",state="SUCCESS"} 1655
+spring_data_repository_invocations_seconds_sum{exception="None",method="findAllByStatusOrderByUpdatedAtDesc",repository="MessageRepository",state="SUCCESS"} 2.035810149
+spring_data_repository_invocations_seconds_count{exception="None",method="findByMessageId",repository="MessageRepository",state="SUCCESS"} 32028
+spring_data_repository_invocations_seconds_sum{exception="None",method="findByMessageId",repository="MessageRepository",state="SUCCESS"} 9.178323876      
+spring_data_repository_invocations_seconds_count{exception="None",method="save",repository="MessageRepository",state="SUCCESS"} 31201
+spring_data_repository_invocations_seconds_sum{exception="None",method="save",repository="MessageRepository",state="SUCCESS"} 15.611912568
+spring_data_repository_invocations_seconds_count{exception="None",method="updateQueuedToProcessed",repository="MessageRepository",state="SUCCESS"} 31201  
+spring_data_repository_invocations_seconds_sum{exception="None",method="updateQueuedToProcessed",repository="MessageRepository",state="SUCCESS"} 9.548011331
+spring_data_repository_invocations_seconds_count{exception="None",method="updateReceivedToQueued",repository="MessageRepository",state="SUCCESS"} 31201   
+spring_data_repository_invocations_seconds_sum{exception="None",method="updateReceivedToQueued",repository="MessageRepository",state="SUCCESS"} 11.061154574
+# HELP spring_data_repository_invocations_seconds_max Duration of repository invocations
+# TYPE spring_data_repository_invocations_seconds_max gauge
+spring_data_repository_invocations_seconds_max{exception="None",method="countGroupedByStatus",repository="MessageRepository",state="SUCCESS"} 0.013420594 
+spring_data_repository_invocations_seconds_max{exception="None",method="countProcessedSince",repository="MessageRepository",state="SUCCESS"} 0.00181477   
+spring_data_repository_invocations_seconds_max{exception="None",method="findAllByStatusOrderByReceivedAtAsc",repository="MessageRepository",state="SUCCESS"} 0.006055541
+spring_data_repository_invocations_seconds_max{exception="None",method="findAllByStatusOrderByUpdatedAtDesc",repository="MessageRepository",state="SUCCESS"} 0.002225494
+spring_data_repository_invocations_seconds_max{exception="None",method="findByMessageId",repository="MessageRepository",state="SUCCESS"} 0.0
+spring_data_repository_invocations_seconds_max{exception="None",method="save",repository="MessageRepository",state="SUCCESS"} 0.0
+spring_data_repository_invocations_seconds_max{exception="None",method="updateQueuedToProcessed",repository="MessageRepository",state="SUCCESS"} 0.0      
+spring_data_repository_invocations_seconds_max{exception="None",method="updateReceivedToQueued",repository="MessageRepository",state="SUCCESS"} 0.0       
+# HELP spring_rabbitmq_listener_seconds Spring RabbitMQ Listener
+# TYPE spring_rabbitmq_listener_seconds summary
+spring_rabbitmq_listener_seconds_count{exception="none",listener_id="org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0",queue="smpp.messages.process",result="success"} 31201
+spring_rabbitmq_listener_seconds_sum{exception="none",listener_id="org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0",queue="smpp.messages.process",result="success"} 117.305576033
+# HELP spring_rabbitmq_listener_seconds_max Spring RabbitMQ Listener
+# TYPE spring_rabbitmq_listener_seconds_max gauge
+spring_rabbitmq_listener_seconds_max{exception="none",listener_id="org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0",queue="smpp.messages.process",result="success"} 0.0
+# HELP submit_sm_active_seconds
+# TYPE submit_sm_active_seconds summary
+submit_sm_active_seconds_count{smpp_command="submit_sm",smpp_system_id="loadtest"} 0
+submit_sm_active_seconds_sum{smpp_command="submit_sm",smpp_system_id="loadtest"} 0.0
+# HELP submit_sm_active_seconds_max
+# TYPE submit_sm_active_seconds_max gauge
+submit_sm_active_seconds_max{smpp_command="submit_sm",smpp_system_id="loadtest"} 0.0
+# HELP submit_sm_seconds
+# TYPE submit_sm_seconds summary
+submit_sm_seconds_count{error="none",smpp_command="submit_sm",smpp_system_id="loadtest"} 31201
+submit_sm_seconds_sum{error="none",smpp_command="submit_sm",smpp_system_id="loadtest"} 86.26158824
+# HELP submit_sm_seconds_max
+# TYPE submit_sm_seconds_max gauge
+submit_sm_seconds_max{error="none",smpp_command="submit_sm",smpp_system_id="loadtest"} 0.0
+# HELP system_cpu_count The number of processors available to the Java virtual machine
+# TYPE system_cpu_count gauge
+system_cpu_count 32.0
+# HELP system_cpu_usage The "recent cpu usage" of the system the application is running in
+# TYPE system_cpu_usage gauge
+system_cpu_usage 0.00625
+# HELP system_load_average_1m The sum of the number of runnable entities queued to available processors and the number of runnable entities running on the available processors averaged over a period of time
+# TYPE system_load_average_1m gauge
+system_load_average_1m 0.51123046875
+# HELP tasks_scheduled_execution_active_seconds
+# TYPE tasks_scheduled_execution_active_seconds summary
+tasks_scheduled_execution_active_seconds_count{code_function="runHandoffBatch",code_namespace="com.example.smpp.application.service.MessageQueueHandoffService",exception="none",outcome="UNKNOWN"} 0
+tasks_scheduled_execution_active_seconds_sum{code_function="runHandoffBatch",code_namespace="com.example.smpp.application.service.MessageQueueHandoffService",exception="none",outcome="UNKNOWN"} 0.0
+# HELP tasks_scheduled_execution_active_seconds_max
+# TYPE tasks_scheduled_execution_active_seconds_max gauge
+tasks_scheduled_execution_active_seconds_max{code_function="runHandoffBatch",code_namespace="com.example.smpp.application.service.MessageQueueHandoffService",exception="none",outcome="UNKNOWN"} 0.0
+# HELP tasks_scheduled_execution_seconds
+# TYPE tasks_scheduled_execution_seconds summary
+tasks_scheduled_execution_seconds_count{code_function="runHandoffBatch",code_namespace="com.example.smpp.application.service.MessageQueueHandoffService",error="none",exception="none",outcome="SUCCESS"} 14021
+tasks_scheduled_execution_seconds_sum{code_function="runHandoffBatch",code_namespace="com.example.smpp.application.service.MessageQueueHandoffService",error="none",exception="none",outcome="SUCCESS"} 67.455477197
+# HELP tasks_scheduled_execution_seconds_max
+# TYPE tasks_scheduled_execution_seconds_max gauge
+tasks_scheduled_execution_seconds_max{code_function="runHandoffBatch",code_namespace="com.example.smpp.application.service.MessageQueueHandoffService",error="none",exception="none",outcome="SUCCESS"} 0.006179298
+# HELP tomcat_sessions_active_current_sessions
+# TYPE tomcat_sessions_active_current_sessions gauge
+tomcat_sessions_active_current_sessions 0.0
+# HELP tomcat_sessions_active_max_sessions
+# TYPE tomcat_sessions_active_max_sessions gauge
+tomcat_sessions_active_max_sessions 0.0
+# HELP tomcat_sessions_alive_max_seconds
+# TYPE tomcat_sessions_alive_max_seconds gauge
+tomcat_sessions_alive_max_seconds 0.0
+# HELP tomcat_sessions_created_sessions_total
+# TYPE tomcat_sessions_created_sessions_total counter
+tomcat_sessions_created_sessions_total 0.0
+# HELP tomcat_sessions_expired_sessions_total
+# TYPE tomcat_sessions_expired_sessions_total counter
+tomcat_sessions_expired_sessions_total 0.0
+# HELP tomcat_sessions_rejected_sessions_total
+# TYPE tomcat_sessions_rejected_sessions_total counter
+tomcat_sessions_rejected_sessions_total 0.0
+PS D:\smpp-observability-platform> docker compose -f infra\docker\docker-compose.yml ps
+NAME                                            IMAGE                                         COMMAND                  SERVICE           CREATED       STATUS                 PORTS
+smpp-observability-platform-admin-dashboard-1   smpp-observability-platform-admin-dashboard   "/docker-entrypoint.…"   admin-dashboard   2 hours ago   Up2 hours             0.0.0.0:5173->80/tcp, [::]:5173->80/tcp
+smpp-observability-platform-app-1               smpp-observability-platform-app               "java -jar app.jar"      app               2 hours ago   Up2 hours             0.0.0.0:2775->2775/tcp, [::]:2775->2775/tcp, 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+smpp-observability-platform-grafana-1           grafana/grafana:11.4.0                        "/run.sh"                grafana           2 hours ago   UpAbout an hour       0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+smpp-observability-platform-jaeger-1            jaegertracing/all-in-one:1.57                 "/go/bin/all-in-one-…"   jaeger            2 hours ago   Up2 hours             0.0.0.0:4318->4318/tcp, [::]:4318->4318/tcp, 0.0.0.0:16686->16686/tcp, [::]:16686->16686/tcp
+smpp-observability-platform-mock-sender-1       wiremock/wiremock:3.3.1                       "/docker-entrypoint.…"   mock-sender       2 hours ago   Up2 hours             0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp
+smpp-observability-platform-postgres-1          postgres:16-alpine                            "docker-entrypoint.s…"   postgres          2 hours ago   Up2 hours (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp
+smpp-observability-platform-prometheus-1        prom/prometheus:v2.55.1                       "/bin/prometheus --c…"   prometheus        2 hours ago   Up2 hours             0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+smpp-observability-platform-rabbitmq-1          rabbitmq:3.13-management-alpine               "docker-entrypoint.s…"   rabbitmq          2 hours ago   Up2 hours (healthy)   0.0.0.0:5672->5672/tcp, [::]:5672->5672/tcp, 0.0.0.0:15672->15672/tcp, [::]:15672->15672/tcp
+PS D:\smpp-observability-platform>

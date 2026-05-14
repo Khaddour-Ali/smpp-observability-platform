@@ -1,0 +1,35 @@
+# Maven
+backend/target/
+# mvn dependency:build-classpath -Dmdep.outputFile=cp.txt (accidental dump in module root)
+backend/cp.txt
+
+# Local env (Compose and tools)
+.env
+infra/docker/.env
+
+# IDE
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.vscode/
+
+# NetBeans
+**/nbproject/private/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Frontend (Vite)
+frontend/admin-dashboard/node_modules/
+frontend/admin-dashboard/dist/
+
+# Local SMPP load-test client (standalone Maven module)
+load-tests/local-smpp-load-client/target/
+

@@ -1,0 +1,50 @@
+Low Test Evidence
+Date: 2026-05-14
+
+Scope:
+Required Low Melrose scenario: 10 TPS for 2 minutes.
+
+Configuration:
+- Endpoint: 7.tcp.eu.ngrok.io:1596 -> localhost:2775
+- SMPP version: v3.4
+- System ID: loadtest
+- Source address/range: 966500000000 / 1
+- Destination address/range: 966511111111 / 1
+- Registered delivery: 0: No MC Delivery Receipt
+- Message: Hello world!
+- Messages: 1200
+- TPS: 10
+- Binds: 1
+- Submit window: 20
+- Planned duration: 2 minutes
+
+Melrose result:
+- Attempted: 1200
+- Remaining: 0
+- Submit duration: 119.3 sec
+- Outstanding SubmitSMResp: 0
+- SubmitSMResp OK: 1200
+- SubmitSMResp NAK: 0
+- SubmitSM client fail: 0
+- SubmitSMResp latency: 194.708 ms
+- SubmitSM TPS: 10
+- SubmitSMResp TPS: 10
+- SubmitSMResp outcome ROK [0x0000]: 1200
+- DeliverSM received: 0
+- DLRs received: 0
+
+Backend/observability:
+- Admin stats before: RECEIVED=0, QUEUED=0, PROCESSED=1, FAILED=0, TOTAL=1
+- Admin stats after drain: RECEIVED=0, QUEUED=0, PROCESSED=1201, FAILED=0, TOTAL=1201
+- Scenario processed delta: 1200
+- Scenario failed delta: 0
+- Prometheus received delta: 1200
+- Prometheus processed delta: 1200
+- Prometheus throttled delta: 0
+- Backend sync latency delta average: 0.780 ms
+- Backend async latency delta average: 6.988 ms
+- RabbitMQ after screenshot + API: main/retry/DLQ messages=0, messages_ready=0, messages_unacknowledged=0
+- Jaeger: 1200 submit_sm traces found; visible traces show 6 spans.
+
+Evidence gap:
+- p50/p95/p99 latency percentiles were not available from the Melrose web screenshot or current Micrometer summary metrics. Average latency is recorded instead.

@@ -1,0 +1,5 @@
+# Intentionally empty: no contact points or alert rules. Keeps this directory
+# tracked without Grafana skipping invalid filenames (e.g. .gitkeep).
+# Do not add `policies:` here - an empty policy list can reset the notification tree.
+apiVersion: 1
+contactPoints: []

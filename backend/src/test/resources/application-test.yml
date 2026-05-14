@@ -1,0 +1,13 @@
+# Integration tests that start PostgreSQL + SMPP only: no RabbitMQ broker required.
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
+management:
+  tracing:
+    export:
+      otlp:
+        enabled: false
+smpp:
+  queue:
+    enabled: false

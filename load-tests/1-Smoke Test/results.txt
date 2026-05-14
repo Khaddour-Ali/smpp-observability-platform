@@ -1,0 +1,46 @@
+Smoke Test Evidence
+Date: 2026-05-14
+
+Scope:
+One-message Melrose Web SMPP smoke run through ngrok to the local Docker Compose SMPP listener.
+This is not one of the PDF-required low/normal/overload scenarios.
+
+Configuration:
+- Endpoint: 7.tcp.eu.ngrok.io:1596 -> localhost:2775
+- SMPP version: v3.4
+- System ID: loadtest
+- Source address/range: 966500000000 / 1
+- Destination address/range: 966511111111 / 1
+- Registered delivery: 0: No MC Delivery Receipt
+- Message: Hello world!
+- Messages: 1
+- TPS: 1
+- Binds: 1
+- Submit window: 20
+
+Melrose result:
+- Attempted: 1
+- Remaining: 0
+- Submit duration: 0.2 sec
+- Outstanding SubmitSMResp: 0
+- SubmitSMResp OK: 1
+- SubmitSMResp NAK: 0
+- SubmitSM client fail: 0
+- SubmitSMResp latency: 219.867 ms
+- SubmitSM TPS: 1
+- SubmitSMResp TPS: 1
+- SubmitSMResp outcome ROK [0x0000]: 1
+- DeliverSM received: 0
+- DLRs received: 0
+
+Backend/observability:
+- Admin health: UP
+- Admin stats after drain: RECEIVED=0, QUEUED=0, PROCESSED=1, FAILED=0, TOTAL=1
+- Admin throughput after run: processedCount=1, messagesPerSecond=0.0167, windowSeconds=60
+- Prometheus received: smpp_messages_received_total{system_id="loadtest"} = 1
+- Prometheus processed: smpp_messages_processed_total{status="PROCESSED"} = 1
+- Prometheus throttled: 0
+- Sync latency: count=1, sum/max=0.038081225 s
+- Async latency: count=1, sum/max=0.191776312 s
+- RabbitMQ main/retry/DLQ queues: Ready=0, Unacked=0, Total=0
+- Jaeger trace: submit_sm root, 431.01 ms, 6 spans, includes pdu.receive, input.validation, db.persist, queue.publish, async.worker.processing.

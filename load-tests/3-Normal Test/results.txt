@@ -1,0 +1,25 @@
+Normal load evidence - 2026-05-14
+
+Tool:
+Local Java + Cloudhopper SMPP load client (not Melrose-hosted evidence).
+
+Command:
+.\mvnw.cmd -q -f ..\load-tests\local-smpp-load-client\pom.xml exec:java "-Dexec.args=--host localhost --port 2775 --system-id loadtest --password loadtest --messages 30000 --tps 100 --binds 2 --submit-window 50 --source 4412345601 --destination 447700900123 --message LOADTEST --request-expiry-ms 60000"
+
+Measured result:
+- Start time from Grafana: 2026-05-14 15:19:30
+- Final message from Grafana: 2026-05-14 15:27:45
+- Wall-clock duration: 495 sec
+- Effective completion rate: 60.6 TPS
+- Cumulative processed before: 1201
+- Cumulative processed after: 31201
+- Scenario processed delta: 30000
+- Failed delta: 0
+- Throttled delta: 0
+- Active sessions during run: 2
+- Sync latency delta average: 0.600 ms
+- Async latency delta average: 3.529 ms
+
+Review note:
+The command requested 100 TPS, but the measured end-to-end completion rate was 60.6 TPS. This proves
+stable acceptance, processing, and drain for 30000 messages, but not sustained 100 TPS.
