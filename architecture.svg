@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1080" viewBox="0 0 1800 1080" role="img" aria-labelledby="title desc">
+  <title id="title">SMPP Observability Platform Architecture</title>
+  <desc id="desc">Clean architecture diagram for the SMPP observability platform showing SMPP clients, Spring Boot layers, PostgreSQL, RabbitMQ, WireMock, Prometheus, Grafana, Jaeger, and React admin dashboard.</desc>
+
+  <defs>
+    <style>
+      .bg { fill: #f6f8fb; }
+      .panel { fill: #ffffff; stroke: #c8d4e0; stroke-width: 2; rx: 16; }
+      .panel-title { font: 700 20px Arial, Helvetica, sans-serif; fill: #102b48; }
+      .title { font: 700 34px Arial, Helvetica, sans-serif; fill: #0f2742; }
+      .subtitle { font: 400 17px Arial, Helvetica, sans-serif; fill: #4e6174; }
+      .box-title { font: 700 16px Arial, Helvetica, sans-serif; fill: #102b48; }
+      .text { font: 400 13px Arial, Helvetica, sans-serif; fill: #34475a; }
+      .small { font: 400 12px Arial, Helvetica, sans-serif; fill: #536578; }
+      .tiny { font: 400 11px Arial, Helvetica, sans-serif; fill: #536578; }
+      .box { fill: #ffffff; stroke: #b9c7d6; stroke-width: 1.8; rx: 10; }
+      .client { fill: #eef5ff; stroke: #8fb9ee; stroke-width: 2; rx: 10; }
+      .app { fill: #f8fbff; stroke: #9db9d7; stroke-width: 2; rx: 10; }
+      .db { fill: #fff8e8; stroke: #e4bd63; stroke-width: 2; rx: 10; }
+      .queue { fill: #f4edff; stroke: #ad90dc; stroke-width: 2; rx: 10; }
+      .mock { fill: #fff0ee; stroke: #df9185; stroke-width: 2; rx: 10; }
+      .obsbox { fill: #eafaf7; stroke: #6fc7bc; stroke-width: 2; rx: 10; }
+      .flow { stroke: #2f80ed; stroke-width: 2.6; fill: none; marker-end: url(#arrow-blue); }
+      .async { stroke: #8e44ad; stroke-width: 2.6; fill: none; marker-end: url(#arrow-purple); stroke-dasharray: 8 6; }
+      .obs { stroke: #0f9f8f; stroke-width: 2.4; fill: none; marker-end: url(#arrow-teal); }
+      .admin { stroke: #e67e22; stroke-width: 2.4; fill: none; marker-end: url(#arrow-orange); }
+      .note { fill: #eef3f8; stroke: #d7e0ea; stroke-width: 1.5; rx: 8; }
+      .tag { font: 700 11px Arial, Helvetica, sans-serif; fill: #ffffff; }
+      .tag-blue { fill: #2f80ed; }
+      .tag-purple { fill: #8e44ad; }
+      .tag-teal { fill: #0f9f8f; }
+      .tag-orange { fill: #e67e22; }
+    </style>
+
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2f80ed" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8e44ad" />
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f9f8f" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e67e22" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1800" height="1080" />
+
+  <text class="title" x="54" y="60">SMPP Observability Platform</text>
+  <text class="subtitle" x="54" y="90">Synchronous SMPP acceptance, durable state, asynchronous delivery, and operational observability.</text>
+
+  <!-- External clients -->
+  <rect class="panel" x="50" y="160" width="250" height="540" />
+  <text class="panel-title" x="76" y="195">External test clients</text>
+
+  <rect class="client" x="78" y="230" width="194" height="94" />
+  <text class="box-title" x="98" y="260">SMPP ESME</text>
+  <text class="text" x="98" y="286">bind_transceiver</text>
+  <text class="text" x="98" y="306">submit_sm</text>
+
+  <rect class="client" x="78" y="370" width="194" height="94" />
+  <text class="box-title" x="98" y="400">Melrose web + ngrok</text>
+  <text class="text" x="98" y="426">Smoke and Low tests</text>
+  <text class="text" x="98" y="446">Public TCP tunnel</text>
+
+  <rect class="client" x="78" y="510" width="194" height="94" />
+  <text class="box-title" x="98" y="540">Local load client</text>
+  <text class="text" x="98" y="566">Java + Cloudhopper</text>
+  <text class="text" x="98" y="586">Normal / Overload</text>
+
+  <!-- Spring Boot app -->
+  <rect class="panel" x="350" y="160" width="770" height="540" />
+  <text class="panel-title" x="380" y="195">Spring Boot application - Java 21</text>
+  <text class="small" x="380" y="218">HTTP 8080, SMPP 2775. Package layers stay explicit and interview-friendly.</text>
+
+  <rect class="app" x="390" y="255" width="190" height="105" />
+  <text class="box-title" x="412" y="286">Protocol / SMPP</text>
+  <text class="text" x="412" y="313">Cloudhopper server</text>
+  <text class="text" x="412" y="333">PDU mapper</text>
+  <text class="text" x="412" y="353">Session registry</text>
+
+  <rect class="app" x="640" y="255" width="210" height="105" />
+  <text class="box-title" x="662" y="286">Sync ingress service</text>
+  <text class="text" x="662" y="313">validate + throttle</text>
+  <text class="text" x="662" y="333">persist RECEIVED</text>
+  <text class="text" x="662" y="353">create message_id</text>
+
+  <rect class="app" x="900" y="255" width="170" height="105" />
+  <text class="box-title" x="922" y="286">SMPP response</text>
+  <text class="text" x="922" y="313">submit_sm_resp</text>
+  <text class="text" x="922" y="333">OK or error</text>
+  <text class="text" x="922" y="353">fast return</text>
+
+  <rect class="app" x="390" y="465" width="190" height="105" />
+  <text class="box-title" x="412" y="496">Metrics + tracing</text>
+  <text class="text" x="412" y="523">Micrometer metrics</text>
+  <text class="text" x="412" y="543">OTel trace spans</text>
+
+  <rect class="app" x="640" y="465" width="210" height="105" />
+  <text class="box-title" x="662" y="496">Admin + Actuator</text>
+  <text class="text" x="662" y="523">/admin/messages/stats</text>
+  <text class="text" x="662" y="543">/actuator/prometheus</text>
+
+  <rect class="app" x="900" y="465" width="170" height="105" />
+  <text class="box-title" x="922" y="496">Queue worker</text>
+  <text class="text" x="922" y="523">consume RabbitMQ</text>
+  <text class="text" x="922" y="543">call mock sender</text>
+  <text class="text" x="922" y="563">update status</text>
+
+  <rect class="app" x="900" y="615" width="170" height="55" />
+  <text class="box-title" x="922" y="647">Queue handoff</text>
+  <text class="tiny" x="922" y="665">RECEIVED scan + publish</text>
+
+  <!-- Infrastructure -->
+  <rect class="panel" x="1170" y="160" width="520" height="540" />
+  <text class="panel-title" x="1200" y="195">Persistence, queue, and sender</text>
+
+  <rect class="db" x="1220" y="255" width="220" height="105" />
+  <text class="box-title" x="1245" y="286">PostgreSQL + Flyway</text>
+  <text class="text" x="1245" y="313">messages table</text>
+  <text class="text" x="1245" y="333">status lifecycle</text>
+  <text class="text" x="1245" y="353">traceparent stored</text>
+
+  <rect class="queue" x="1220" y="420" width="220" height="125" />
+  <text class="box-title" x="1245" y="451">RabbitMQ</text>
+  <text class="text" x="1245" y="478">main process queue</text>
+  <text class="text" x="1245" y="498">TTL retry queue</text>
+  <text class="text" x="1245" y="518">DLQ</text>
+
+  <rect class="mock" x="1220" y="605" width="220" height="95" />
+  <text class="box-title" x="1245" y="636">WireMock sender</text>
+  <text class="text" x="1245" y="663">POST /send</text>
+  <text class="text" x="1245" y="683">mock downstream</text>
+
+  <rect class="note" x="1480" y="255" width="165" height="445" />
+  <text class="box-title" x="1500" y="288">State outcomes</text>
+  <text class="text" x="1500" y="322">RECEIVED</text>
+  <text class="text" x="1500" y="350">QUEUED</text>
+  <text class="text" x="1500" y="378">PROCESSED</text>
+  <text class="text" x="1500" y="406">FAILED</text>
+  <text class="small" x="1500" y="462">Accepted work is</text>
+  <text class="small" x="1500" y="480">durable before the</text>
+  <text class="small" x="1500" y="498">SMPP response.</text>
+  <text class="small" x="1500" y="548">Retry delay lives</text>
+  <text class="small" x="1500" y="566">in RabbitMQ, not</text>
+  <text class="small" x="1500" y="584">in SMPP threads.</text>
+
+  <!-- Observability -->
+  <rect class="panel" x="350" y="755" width="1340" height="210" />
+  <text class="panel-title" x="380" y="790">Observability and operator surfaces</text>
+
+  <rect class="obsbox" x="390" y="830" width="190" height="85" />
+  <text class="box-title" x="412" y="862">React admin</text>
+  <text class="text" x="412" y="888">live stats UI</text>
+
+  <rect class="obsbox" x="640" y="830" width="190" height="85" />
+  <text class="box-title" x="662" y="862">Prometheus</text>
+  <text class="text" x="662" y="888">scrapes metrics</text>
+
+  <rect class="obsbox" x="890" y="830" width="190" height="85" />
+  <text class="box-title" x="912" y="862">Grafana</text>
+  <text class="text" x="912" y="888">dashboard panels</text>
+
+  <rect class="obsbox" x="1140" y="830" width="190" height="85" />
+  <text class="box-title" x="1162" y="862">Jaeger</text>
+  <text class="text" x="1162" y="888">submit_sm traces</text>
+
+  <rect class="obsbox" x="1390" y="830" width="210" height="85" />
+  <text class="box-title" x="1412" y="862">RabbitMQ UI</text>
+  <text class="text" x="1412" y="888">queue drain / DLQ</text>
+
+  <!-- Main flow arrows: short, routed around boxes -->
+  <path class="flow" d="M 272 277 L 390 307" />
+  <path class="flow" d="M 272 417 L 390 307" />
+  <path class="flow" d="M 272 557 L 390 307" />
+  <path class="flow" d="M 580 307 L 640 307" />
+  <path class="flow" d="M 850 307 L 900 307" />
+  <path class="flow" d="M 745 360 L 745 390 L 1185 390 L 1185 307 L 1220 307" />
+
+  <!-- Async and DB/queue routes, kept in the empty lanes between boxes -->
+  <path class="async" d="M 1010 615 L 1010 590 L 1190 590 L 1190 482 L 1220 482" />
+  <path class="async" d="M 1220 482 L 1125 482 L 1125 517 L 1070 517" />
+  <path class="async" d="M 1070 517 L 1190 517 L 1190 652 L 1220 652" />
+  <path class="async" d="M 985 570 L 985 595 L 1185 595 L 1185 340 L 1220 340" />
+  <path class="async" d="M 985 615 L 985 590 L 880 590 L 880 642 L 900 642" />
+
+  <!-- Admin and observability routes -->
+  <path class="admin" d="M 485 830 L 485 730 L 745 730 L 745 570" />
+  <path class="admin" d="M 745 465 L 745 405 L 1188 405 L 1188 330 L 1220 330" />
+
+  <path class="obs" d="M 735 830 L 735 720 L 745 720 L 745 570" />
+  <path class="obs" d="M 830 872 L 890 872" />
+  <path class="obs" d="M 485 570 L 485 720 L 1235 720 L 1235 830" />
+  <path class="obs" d="M 1330 482 L 1495 482 L 1495 830" />
+
+  <!-- Flow labels -->
+  <rect class="tag-blue" x="315" y="274" width="22" height="22" rx="11" />
+  <text class="tag" x="322" y="289">1</text>
+  <text class="small" x="344" y="289">submit_sm traffic</text>
+
+  <rect class="tag-blue" x="595" y="286" width="22" height="22" rx="11" />
+  <text class="tag" x="602" y="301">2</text>
+  <text class="small" x="585" y="278">map and validate</text>
+
+  <rect class="tag-blue" x="880" y="286" width="22" height="22" rx="11" />
+  <text class="tag" x="887" y="301">3</text>
+  <text class="small" x="885" y="278">fast response</text>
+
+  <rect class="tag-blue" x="1110" y="369" width="22" height="22" rx="11" />
+  <text class="tag" x="1117" y="384">4</text>
+  <text class="small" x="1090" y="362">persist RECEIVED</text>
+
+  <rect class="tag-purple" x="1085" y="567" width="22" height="22" rx="11" />
+  <text class="tag" x="1092" y="582">5</text>
+  <text class="small" x="1030" y="560">publish queued work</text>
+
+  <rect class="tag-purple" x="1114" y="462" width="22" height="22" rx="11" />
+  <text class="tag" x="1121" y="477">6</text>
+  <text class="small" x="1080" y="454">consume async</text>
+
+  <rect class="tag-purple" x="1120" y="632" width="22" height="22" rx="11" />
+  <text class="tag" x="1127" y="647">7</text>
+  <text class="small" x="1080" y="625">mock delivery</text>
+
+  <rect class="tag-teal" x="590" y="708" width="22" height="22" rx="11" />
+  <text class="tag" x="597" y="723">8</text>
+  <text class="small" x="615" y="723">metrics and traces use separate lanes</text>
+
+  <!-- Legend -->
+  <rect class="panel" x="50" y="755" width="250" height="210" />
+  <text class="panel-title" x="78" y="790">Legend</text>
+  <line class="flow" x1="82" y1="830" x2="150" y2="830" />
+  <text class="small" x="165" y="835">Sync accept path</text>
+  <line class="async" x1="82" y1="868" x2="150" y2="868" />
+  <text class="small" x="165" y="873">Async queue path</text>
+  <line class="obs" x1="82" y1="906" x2="150" y2="906" />
+  <text class="small" x="165" y="911">Metrics / traces</text>
+  <line class="admin" x1="82" y1="944" x2="150" y2="944" />
+  <text class="small" x="165" y="949">Admin UI / API</text>
+
+</svg>

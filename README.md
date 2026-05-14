@@ -61,6 +61,8 @@ and the Maven Wrapper.
 
 The application is intentionally layered and small enough to explain in an interview:
 
+![SMPP Observability Platform architecture](architecture.svg)
+
 ```text
 SMPP client / load tool
         |
