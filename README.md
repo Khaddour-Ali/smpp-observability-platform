@@ -61,30 +61,7 @@ and the Maven Wrapper.
 
 The application is intentionally layered and small enough to explain in an interview:
 
-![SMPP Observability Platform architecture](architecture.svg)
-
-```text
-SMPP client / load tool
-        |
-        v
-Cloudhopper SMPP server
-        |
-        v
-protocol/smpp
-  maps PDUs, creates responses, manages SMPP sessions
-        |
-        v
-application
-  validates, throttles, persists, queues, processes, exposes admin queries
-        |
-        +-----------> repository
-        |             PostgreSQL + Flyway, message lifecycle state
-        |
-        +-----------> RabbitMQ
-                      async worker, retry queue, DLQ
-        |
-        +-----------> mock HTTP sender
-```
+![SMPP Observability Platform architecture](architecture.png)
 
 Package structure:
 
