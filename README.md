@@ -59,8 +59,6 @@ and the Maven Wrapper.
 
 ## Architecture Overview
 
-The application is intentionally layered and small enough to explain in an interview:
-
 ![SMPP Observability Platform architecture](architecture.png)
 
 Package structure:
