@@ -531,13 +531,3 @@ queue deliveries and repeated terminal processing.
 - Add delivery receipt support if the mock sender contract requires it.
 - Add security for Admin APIs in a non-local environment.
 
-## Interview Notes
-
-- The most important design decision is separating fast SMPP acceptance from slower delivery work.
-- PostgreSQL persistence before `submit_sm_resp` makes accepted messages durable.
-- RabbitMQ is chosen for understandable retry and DLQ behavior, not because this assignment needs a
-  large distributed architecture.
-- Observability is built around the message lifecycle: counters for events, timers for sync/async
-  work, session gauge for bound clients, and traces from protocol receive through async worker.
-- The load-test evidence is intentionally honest: strong Low/Melrose evidence, larger local runs,
-  no fabricated percentile or sustained-TPS claims.
